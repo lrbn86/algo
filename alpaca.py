@@ -21,18 +21,26 @@ def create_order(symbol, qty, side, type, time_in_force):
         "type": type,
         "time_in_force": time_in_force
     }
-    r = requests.post(ORDERS_URL, json=data, headers=HEADERS)
+    r = requests.post(ORDERS_URL, json=data, headers=HEADERS) # Send request to Alpaca
     return json.loads(r.content)
 
 # API Documentation Link: https://docs.alpaca.markets/api-documentation/api-v2/
-SYMBOL = 'AAPL'
-SHARES = 1
+# Use third party market screeners
+# https://finviz.com/screener.ashx
+# https://stockfetcher.com/ 
+
+# ORDERS: https://docs.alpaca.markets/api-documentation/api-v2/orders/
+stocks = ['AAPL', 'TWTR', 'REKR']
+
+SYMBOL = 'stock_name'
+SHARES = 
 BUY_OR_SELL = "buy"
+
+# Type can be: market, limit, stop, stop_limit
 TYPE = "market"
+
+# day, gtc, opg, cls, ioc, fok
 TIME_IN_FORCE = "gtc"
 
+# Create order, don't need to save into response
 response = create_order(SYMBOL, SHARES, BUY_OR_SELL, TYPE, TIME_IN_FORCE)
-
-while True:
-    create_order(SYMBOL, SHARES, BUY_OR_SELL, TYPE, TIME_IN_FORCE)
-    sleep(1)
